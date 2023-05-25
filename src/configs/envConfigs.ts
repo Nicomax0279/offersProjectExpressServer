@@ -3,6 +3,6 @@ dotenv.config();
 const env = process.env;
 
 export const options = {
-    PORT : env.PORT
-
+    PORT : env.PORT,
+    MODE : env.MODE
 }
