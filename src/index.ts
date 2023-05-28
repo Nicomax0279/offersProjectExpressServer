@@ -1,15 +1,21 @@
 import express from 'express';
 import os from 'os';
 import cluster from 'cluster'
+import cors from 'cors';
 //myModules
+
 import { options } from './configs/envConfigs';
 import {logger} from './logs/logger'
+import mainRouter from './routes/index.routes';
 const app = express();
 
 
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true})); 
+app.use(cors())
 
+//routes
+app.use('/',mainRouter)
 
 const MODE = options.MODE
 if(MODE === "CLUSTER" && cluster.isPrimary ){
@@ -26,9 +32,6 @@ if(MODE === "CLUSTER" && cluster.isPrimary ){
     app.listen(options.PORT, () => logger.info(`listening on port ${options.PORT}`))
 }
 
-app.listen(options.PORT,()=>{
-    console.log(`Server listening on PORT:${options.PORT}`);
-})
 
 
 
