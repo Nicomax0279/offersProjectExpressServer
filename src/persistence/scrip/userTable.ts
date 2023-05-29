@@ -19,7 +19,7 @@ const op = async()=>{
         table.string("surname",50)
         table.string("career",20)
         table.date("birthdate")
-        
+        table.timestamps(true,true)  
     })
     //await database.from("user").insert(defaultProducts)
 
