@@ -15,12 +15,13 @@ const op = async()=>{
         table.increments('id')
         table.string("username",50).unique()
         table.string("password",30)
+        table.boolean("active").defaultTo(true)
         table.string("name",50).unique()
         table.string("description",250)
         table.timestamps(true,true)
     })
 
-
+     //await database.from("user").insert(defaultProducts)
 
 
     database.destroy()

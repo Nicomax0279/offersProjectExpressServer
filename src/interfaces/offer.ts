@@ -1,5 +1,6 @@
 export interface offer{
     id?:number;
+    active?:boolean;
     title:string;
     company:string;
     description:string;

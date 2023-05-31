@@ -10,6 +10,7 @@ export interface User{
     surname:string;
     birthdate:Date;
     career:string;
+    active:boolean;
 }
 export interface jwtuser{
     username:string
