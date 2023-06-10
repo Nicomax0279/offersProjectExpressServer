@@ -10,7 +10,7 @@ export const loginUser = async(user:LoginUser)=>{
         if(founduser){
             if(await bcrypt.compare(user.password,founduser.password)){
                 
-                const token = generateToken({username : user.username})
+                const token = generateToken({username : user.username , userId : founduser.id})
                 return {token: token}
             } else{
                 throw new Error("credentials error")
@@ -41,7 +41,7 @@ export const signUpUser = async(user:User)=>{
 
 }
 export const verifiesToken = async (token:string) => {
-    console.log(token)
+ 
     if(!token){
         return false
     }

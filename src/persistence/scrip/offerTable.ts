@@ -18,7 +18,6 @@ const op = async()=>{
         table.string("description",300)
         table.string("career",30)
         table.string("company",30).references('name').inTable("company")
-        table.string("description",250)
         table.string("text",600)
         table.string("modality",20).checkIn(['presencial','hibrido','remoto'])
         table.timestamps(true,true)

@@ -5,7 +5,7 @@ export interface company {
     name:string;
     active:boolean;
     description:string;
-
+    updated_at:Date;
 
 
 
