@@ -5,7 +5,7 @@ import cors from 'cors';
 //myModules
 
 import { options } from './configs/envConfigs';
-import {logger} from './logs/logger'
+import {logger} from './logger'
 import mainRouter from './routes/index.routes';
 const app = express();
 
