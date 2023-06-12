@@ -1,5 +1,6 @@
 import knex from "knex";
 import { options } from "../../configs/envConfigs";
+import { offer } from "../../interfaces/offer";
 
 
 
@@ -22,7 +23,7 @@ const op = async()=>{
         table.string("modality",20).checkIn(['presencial','hibrido','remoto'])
         table.timestamps(true,true)
     })
-     //await database.from("user").insert(defaultProducts)
+    // await database.from("offer").insert(defaultOffer)
 
 
 

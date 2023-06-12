@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 
 
 export const validateToken = (req:Request, res:Response, next:NextFunction)=>{
+
     //@ts-ignore
     let token = req.header['x-access-token'] || req.headers['authorization']
     if(!token){
@@ -20,7 +21,8 @@ export const validateToken = (req:Request, res:Response, next:NextFunction)=>{
                 res.status(400).json({error:"validation token error"})
                 return
             }else{
-                //@ts-ignore
+              
+                //@ts-ignore            
                 req.user = user
                 next()
             }
