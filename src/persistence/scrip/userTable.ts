@@ -18,6 +18,7 @@ const op = async()=>{
         table.string("name",50)
         table.string("surname",50)
         table.string("career",20)
+        table.string("description",400)
         table.boolean("active").defaultTo(true)
         table.date("birthdate")
         table.timestamps(true,true)  

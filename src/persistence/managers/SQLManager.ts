@@ -51,7 +51,7 @@ class SQLManager{
         
     }
     async putById(id:number,object:object){
-        try {
+        try {  
             await this.database.from(this.tableName).update(object).where("id",id)
         } catch (error) {
             throw error

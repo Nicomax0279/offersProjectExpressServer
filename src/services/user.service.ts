@@ -15,6 +15,7 @@ export const getUserByUsername = async (username:string) =>{
 }
 export const putById = async (id:number, user:User)=>{
     try {
+        
         await userManager.putById(id,user);
         return {success : "user update successfully"}
     } catch (error) {

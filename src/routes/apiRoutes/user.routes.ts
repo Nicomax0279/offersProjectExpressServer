@@ -6,10 +6,10 @@ const userRouter = Router()
 
 userRouter.get("/",userController.getUser);
 userRouter.get("/myUser",userController.getMyUser)
-userRouter.put("myUser",userController.putMyUser)
+userRouter.put("/myUser",userController.putMyUser)
 
 
-
+    
 
 
 export {userRouter}

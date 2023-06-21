@@ -4,6 +4,8 @@ import * as offerService from '../services/offer.service'
 import { offer } from "../interfaces/offer";
 export const getOffers = async (req:Request,res:Response)=>{
     try {
+        const {query} = req
+        console.log(query)
         const offers =  await offerService.getOffers();
         
         res.status(200).json(offers)
@@ -19,6 +21,7 @@ export const getOffers = async (req:Request,res:Response)=>{
 export const postOffer = async (req:Request,res:Response)=>{
     try {
         const offer:offer = req.body 
+        
         offer.company = 'theBest';
         const response =  await offerService.postOffer(offer);
         

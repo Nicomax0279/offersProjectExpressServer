@@ -12,6 +12,8 @@ export interface User{
     career:string;
     active:boolean;
     updated_at:Date;
+    description:string;
+    img:string;
 }
 export interface jwtuser{
     username:string

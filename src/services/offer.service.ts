@@ -10,10 +10,14 @@ export const getOffers = ()=>{
         throw error
     }
 }
-export const postOffer = (offer:offer)=>{
+
+export const postOffer = async(offer:offer)=>{
     try {
-        return offerManager.save(offer);
+  
+        await offerManager.save(offer);
+        return {Response: "offer created sucefully"}
     } catch (error) {
+       
         throw error
     }
 }

@@ -22,6 +22,7 @@ export const signUpUser = async(req:Request,res:Response)=>{
         const response = await authService.signUpUser(user)
         res.json(response)
     } catch (error) {
+       
         res.status(400).json(`${error}`)
     }
 

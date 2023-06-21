@@ -2,7 +2,7 @@ import knex from "knex";
 import { options } from "../../configs/envConfigs";
 
 
-
+console.log(options)
 const database = knex(options.sqlite)
 
 const op = async()=>{
