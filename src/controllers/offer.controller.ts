@@ -5,7 +5,6 @@ import { offer } from "../interfaces/offer";
 export const getOffers = async (req:Request,res:Response)=>{
     try {
         const {query} = req
-        console.log(query)
         const offers =  await offerService.getOffers();
         
         res.status(200).json(offers)
