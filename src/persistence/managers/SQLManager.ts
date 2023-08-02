@@ -1,8 +1,8 @@
 import knex, { Knex } from "knex"
 
 class SQLManager{
-    private tableName:string = ""; 
-    private database:Knex;
+    protected tableName:string = ""; 
+    protected database:Knex;
     constructor(options:object,tableName:string){
         this.tableName = tableName
         this.database = knex(options);
@@ -28,8 +28,8 @@ class SQLManager{
     async getById(id:number){
         try {
             const result =  await this.database.from(this.tableName).select("*").where("id",id)
-            
-            return result
+            const parseResult = result.map((elm: any)=>({...elm}))[0];
+            return parseResult
         } catch (error) {
             throw error
         }

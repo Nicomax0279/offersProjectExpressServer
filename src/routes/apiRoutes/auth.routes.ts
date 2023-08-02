@@ -8,6 +8,7 @@ authRouter.post('/verifies',authController.varifies)
 
 
 
+authRouter.post('/loginCompany',authController.loginCompany)
 
 
 

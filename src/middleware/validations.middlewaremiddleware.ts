@@ -30,14 +30,29 @@ export const validateToken = (req:Request, res:Response, next:NextFunction)=>{
     }
 }
 
-// export const isAdmin = (req, res, next)=>{
-//     //console.log(req.user)
-//     if(req.user.admin == true){
-//         next()
-//     }else{
-//         res.status(400).json({error:'admin status is necessary'})
-//         return
-//     }
+
+export const isCompany = (req:Request, res:Response, next:NextFunction)=>{
+   
+    //@ts-ignore
+    if(req.user.role == "company"){
+        next()
+    }else{
+        res.status(400).json({error:'admin status is necessary'})
+        return
+    }
 
 
-// }
+}
+
+export const isUser = (req:Request, res:Response, next:NextFunction)=>{
+
+    //@ts-ignore
+    if(req.user.role == "user"){
+        next()
+    }else{
+        res.status(400).json({error:'admin status is necessary'})
+        return
+    }
+
+
+}

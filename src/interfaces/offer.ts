@@ -1,12 +1,17 @@
+
 export interface offer{
     id?:number;
-    active?:boolean;
     title:string;
-    company:string;
-    description:string;
+    companyID:number;
+    shortText:string;
     career:string;
-    updated_at?:string;
     text?:string;
-    modality?:'presencial'|'hibrida'|"virtual"|"remoto";
+    modality?:string;
+    created_at:Date;
+    updated_at:Date;
+    active?:boolean;
+
+    name?:string;
+    logo?:string
     
 }

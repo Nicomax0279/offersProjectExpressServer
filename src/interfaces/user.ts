@@ -4,17 +4,21 @@ export interface LoginUser{
 }
 export interface User{
     id?:number;
-    password:string;
+    password?:string;
     username:string;
-    name:string;
-    surname:string;
+    names:string;
+    surnames:string;
     birthdate:Date;
     career:string;
-    active:boolean;
-    updated_at:Date;
     description:string;
-    img:string;
+    img?:string;
+    created_at:Date;
+    updated_at:Date;
+    active?:boolean;
 }
 export interface jwtuser{
-    username:string
+    username:string;
+    userId:number;
+    role:'user'|'company';
+    career:string;
 }
