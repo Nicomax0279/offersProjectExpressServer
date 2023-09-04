@@ -23,7 +23,7 @@ export const getUsers =  async (req:Request,res:Response)=>{
        //@ts-ignore
       const companyID = req.user.userId;
 
-      console.log(companyID)
+      
       const response =  await incriptionService.getUsersByOfferID(companyID,Number(req.params.id))
       res.status(200).json(response)      
 

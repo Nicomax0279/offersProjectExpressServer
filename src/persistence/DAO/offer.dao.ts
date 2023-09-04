@@ -36,7 +36,7 @@ export  class OfferManager extends SQLManager {
         
             return parseResult
         } catch (error) {
-            console.log
+           
             throw error
         }
     }
@@ -48,7 +48,6 @@ export  class OfferManager extends SQLManager {
             return parseResult.career
         } catch (error) {
             //@ts-ignore
-            console.log(error)
             throw error
         }
     }

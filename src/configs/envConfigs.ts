@@ -12,7 +12,7 @@ export const options = {
     connection:{
         filename: filenames
     }},
-    Mysql:{client: "mysql",
+    Mysql:{client: "mysql2",
     connection:{
         host : env.HOST || "127.0.0.1",
         user : env.SQLUser || 'root',

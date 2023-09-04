@@ -5,12 +5,10 @@ import { inscriptionManager, offerManager } from "../persistence/DAO/index";
 export const postinscription = async (inscription:inscription,userCareer:string)=>{
 
     try {
-        console.log( await inscriptionManager.exist(inscription.offerID,inscription.userID))
+
        if (!await inscriptionManager.exist(inscription.offerID,inscription.userID)){ 
         
             const offerCareer = await offerManager.getCareerById(inscription.offerID)
-            console.log(offerCareer)
-            console.log(userCareer)
             if(offerCareer == userCareer ){
               
                 await inscriptionManager.save(inscription)
@@ -38,6 +36,6 @@ export const  getUsersByOfferID = async (companyID:number,offerID:number)=>{
         return users
 
     } catch (error) {
-       console.log(error)
+
         throw  error
     }}
