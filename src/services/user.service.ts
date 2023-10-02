@@ -1,6 +1,7 @@
 
 import { User } from "../interfaces/user";
 import { userManager } from "../persistence/DAO/index";
+import { formateDate } from "./auth.service";
 
 
 
@@ -17,6 +18,10 @@ export const getUserByUsername = async (username:string) =>{
 export const putById = async (id:number, user:User)=>{
     try {
         user.password = undefined;
+        if(user.birthdate){
+            //@ts-ignore
+            user.birthdate = formateDate(user.birthdate);
+        }
         await userManager.putById(id,user);
         return {success : "user update successfully"}
     } catch (error) {

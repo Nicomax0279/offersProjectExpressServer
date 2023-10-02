@@ -10,7 +10,7 @@ export interface offer{
     created_at:Date;
     updated_at:Date;
     active?:boolean;
-
+    isInscribed:number;
     name?:string;
     logo?:string
     

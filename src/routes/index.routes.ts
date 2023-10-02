@@ -5,6 +5,7 @@ import { userRouter } from "./apiRoutes/user.routes";
 import { validateToken } from "../middleware/validations.middlewaremiddleware";
 import { inscriptionRouter } from "./apiRoutes/inscription.routes";
 import { companyRouter } from "./apiRoutes/company.routes";
+import { careerRouter } from "./apiRoutes/career.routes";
 const mainRouter = Router();
 
 mainRouter.use('/api/auth',authRouter)
@@ -12,4 +13,5 @@ mainRouter.use('/api/offer',validateToken,offerRouter)
 mainRouter.use('/api/user',validateToken,userRouter)
 mainRouter.use('/api/inscription',validateToken,inscriptionRouter)
 mainRouter.use('/api/company',validateToken,companyRouter)
+mainRouter.use('/api/career',careerRouter)
 export default mainRouter;

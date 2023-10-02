@@ -1,14 +1,23 @@
+import { Response } from "express";
 import { companyManager, userManager } from "../persistence/DAO/index";
 import jwt from "jsonwebtoken";
 import { options } from "../configs/envConfigs.js";
 import bcrypt from "bcrypt";
 import { LoginUser, User, jwtuser } from "../interfaces/user.js";
 import { IloginCompany, company, jwtCompany } from "../interfaces/company";
+import { sendCode } from "./code.service";
+
 export const loginUser = async (user: LoginUser) => {
   try {
+    if (!user.username) throw new Error("username is required");
+    if (!user.password) throw new Error("password is required");
+    user.username.toLowerCase();
     const founduser = await userManager.getbyUsername(user.username);
     if (founduser) {
       if (await bcrypt.compare(user.password, founduser.password)) {
+        if (!founduser.active) {
+          sendCode(founduser.username)
+          throw new Error("active your user via email");}
         const token = generateTokenUser({
           username: user.username,
           userId: founduser.id,
@@ -28,6 +37,9 @@ export const loginUser = async (user: LoginUser) => {
 };
 export const signUpUser = async (user: User) => {
   try {
+    if (!user.username) throw new Error("username is required");
+    if (!user.password) throw new Error("password is required");
+    user.username.toLowerCase();
     const foundUser = await userManager.getbyUsername(user.username);
 
     if (foundUser) {
@@ -37,15 +49,16 @@ export const signUpUser = async (user: User) => {
       user.password = await bcrypt.hash(user.password, 5);
       //@ts-ignore
       user.birthdate = formateDate(user.birthdate);
-
+      user.active = false;
       await userManager.save(user);
+      await sendCode(user.username);
       return { Response: "signup successfully" };
     }
   } catch (error) {
     throw error;
   }
 };
-const formateDate = (dateString: Date) => {
+export const formateDate = (dateString: Date) => {
   try {
     const date = new Date(dateString);
     let year: number = date.getFullYear();
@@ -101,6 +114,7 @@ const generateTokenCompany = (company: jwtCompany) => {
 
 export const loginCompany = async (company: IloginCompany) => {
   try {
+    company.username.toLowerCase()
     const foundcompany = await companyManager.getbyUsername(company.username);
 
     if (foundcompany) {
@@ -123,6 +137,7 @@ export const loginCompany = async (company: IloginCompany) => {
 };
 export const signUpCompany = async (company: company) => {
   try {
+    company.username.toLowerCase()
     const foundUser = await companyManager.getbyUsername(company.username);
 
     if (foundUser) {
@@ -135,5 +150,34 @@ export const signUpCompany = async (company: company) => {
     }
   } catch (error) {
     throw error;
+  }
+};
+
+export const activeUser = async (
+  username: string
+): Promise<{ msg: string }> => {
+  try {
+    username.toLowerCase()
+    const userFound = await userManager.getbyUsername(username);
+    await userManager.putById(userFound.id, { active: true });
+    return { msg: "user activated successfully" };
+  } catch (error) {
+    throw new Error('error on auth service');
+  }
+};
+
+
+export const changePassword = async (
+  username: string, password:string
+): Promise<{ msg: string }> => {
+  try {
+    username.toLowerCase()
+    const userFound = await userManager.getbyUsername(username);
+    password = await bcrypt.hash(password, 5)
+    console.log(password)
+    await userManager.putById(userFound.id, { password: password });
+    return { msg: "user password successfully change" };
+  } catch (error) {
+    throw new Error('error on auth service');
   }
 };

@@ -6,7 +6,15 @@ class SQLManager{
     constructor(options:object,tableName:string){
         this.tableName = tableName
         this.database = knex(options);
+        this.test()
     }
+    async test(){
+        try {
+         await this.database.from(this.tableName).select("id").limit(1)
+        } catch (error) {
+            throw error
+        }
+    } 
     async save(object:object){
         try {
             await this.database.from(this.tableName).insert(object)
@@ -61,8 +69,8 @@ class SQLManager{
     async getby(by:string,value:string){
         try {
             const result =  await this.database.from(this.tableName).select("*").where(`${by}`,value)
-            
-            return result
+            const parseResult = result.map((elm: any)=>({...elm}));
+            return parseResult
         } catch (error) {
             throw error
         }

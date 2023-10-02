@@ -1,8 +1,16 @@
 PORT=8080
-MODE=noCLUSTER
-KEY= jwt
-SQLUser = myuser
-SQLPassword = 123
-SQLDataBase = myDatabase
-DATABASE = SQLITE
+MODE=CLUSTER
+MAXT= 4
+KEY=dkdsaj43214dasda
+SQLUser = root
+SQLPassword =  
+SQLDataBase = offerprojectdb
+DATABASE = MYSQL
 HOST = 127.0.0.1
+
+EMAIL_HOST=smtp.ethereal.email
+EMAIL_USER=electa.runte@ethereal.email
+EMAIL_PASS=ANW5axBxDMksAzWKtg
+EMAIL_TEST=electa.runte@ethereal.email
+EMAIL_MODE = test
+#  EMAIL_MODE = prod

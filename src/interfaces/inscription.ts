@@ -5,5 +5,6 @@ export interface inscription{
     created_at?:Date;
     updated_at?:Date;
     active?:boolean;
+    
 
 }

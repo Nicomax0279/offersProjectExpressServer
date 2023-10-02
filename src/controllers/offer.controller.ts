@@ -38,11 +38,10 @@ export const getOffersCompany = async (req:Request,res:Response)=>{
     }
 }
 export const getOffers = async (req:Request,res:Response)=>{
-    try {
+    try {   
         //@ts-ignore
         const jwt:jwtuser = req.user
-        const {query} = req
-        const offers =  await offerService.getOffers(jwt.career);
+        const offers =  await offerService.getOffers(req.query,jwt.userId);
         return offers
        
     } catch (error) {

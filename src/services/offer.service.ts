@@ -1,12 +1,15 @@
 import { compareSync } from "bcrypt";
 import { offer } from "../interfaces/offer";
 import { companyManager, offerManager } from "../persistence/DAO"
+import { filters } from "../interfaces/body";
 
 
 
-export const getOffers = async (userCarrer:string | undefined)=>{
+export const getOffers = async (filters:filters,userId:number)=>{
     try {
-        return  await offerManager.getbyCareer(userCarrer);
+       return await offerManager.getAllWithFilters(filters,userId)
+       // return  await offerManager.getbyCareer(userCareer);
+        
     } catch (error) {
         throw error
     }

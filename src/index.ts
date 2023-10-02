@@ -18,8 +18,10 @@ app.use(cors())
 app.use('/',mainRouter)
 
 const MODE = options.MODE
+
 if(MODE === "CLUSTER" && cluster.isPrimary ){
-    const cpus = os.cpus().length - 6
+    let cpus = os.cpus().length
+    if(cpus > Number(options.MAXT)) cpus = Number(options.MAXT) 
     for (let index = 0; index < cpus; index++) {
         cluster.fork()       
     }

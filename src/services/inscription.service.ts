@@ -12,8 +12,8 @@ export const postinscription = async (inscription:inscription,userCareer:string)
             if(offerCareer == userCareer ){
               
                 await inscriptionManager.save(inscription)
-                return {Response: "inscription created sucefully"}
-            }else{ throw new Error("carrer validation error")}
+                return {Response: "inscription created successfully"}
+            }else{ throw new Error("career validation error")}
         
             
        }else{throw new Error("inscription replicate error")}
@@ -32,7 +32,6 @@ export const  getUsersByOfferID = async (companyID:number,offerID:number)=>{
 
     try {
         const users = await inscriptionManager.getUsersByOfferId(offerID)
-        console.log(users)
         return users
 
     } catch (error) {
