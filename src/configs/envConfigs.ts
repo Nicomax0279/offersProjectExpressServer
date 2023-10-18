@@ -26,6 +26,7 @@ export const options = {
         EMAIL_USER:env.EMAIL_USER || '',
         EMAIL_PASS:env.EMAIL_PASS || '',
         EMAIL_TEST:env.EMAIL_TEST || '',
-        EMAIL_MODE:env.EMAIL_TEST || 'test'
+        EMAIL_MODE:env.EMAIL_TEST || 'test',
+        EMAIL_SERVICE:env.EMAIL_SERVICE || ''
     }
 }

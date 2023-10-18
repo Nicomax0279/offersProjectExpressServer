@@ -43,6 +43,7 @@ let { Mailer } = options;
 const transporter = nodemailer.createTransport({
   //@ts-ignore
   host: Mailer.EMAIL_HOST,
+  service: Mailer.EMAIL_SERVICE,
   port: 587,
   auth: {
     user: Mailer.EMAIL_USER,
