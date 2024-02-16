@@ -16,6 +16,7 @@ export const getOffersFilter = async (req:Request, res:Response)=>{
     }else{
        
         const offers = await getOffers(req,res)
+       
         res.status(200).json(offers)
         return 
     }
@@ -41,7 +42,9 @@ export const getOffers = async (req:Request,res:Response)=>{
     try {   
         //@ts-ignore
         const jwt:jwtuser = req.user
+        console.log(req.query)
         const offers =  await offerService.getOffers(req.query,jwt.userId);
+        
         return offers
        
     } catch (error) {

@@ -7,9 +7,10 @@ import { filters } from "../interfaces/body";
 
 export const getOffers = async (filters:filters,userId:number)=>{
     try {
+        
        return await offerManager.getAllWithFilters(filters,userId)
        // return  await offerManager.getbyCareer(userCareer);
-        
+       
     } catch (error) {
         throw error
     }
@@ -19,7 +20,7 @@ export const postOffer = async(offer:offer)=>{
     try {
   
         await offerManager.save(offer);
-        return {Response: "offer created sucefully"}
+        return {Response: "offer created successfully"}
     } catch (error) {
         throw error
     }

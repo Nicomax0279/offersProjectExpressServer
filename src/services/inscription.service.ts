@@ -10,7 +10,7 @@ export const postinscription = async (inscription:inscription,userCareer:string)
         
             const offerCareer = await offerManager.getCareerById(inscription.offerID)
             if(offerCareer == userCareer ){
-              
+                console.log(inscription)
                 await inscriptionManager.save(inscription)
                 return {Response: "inscription created successfully"}
             }else{ throw new Error("career validation error")}

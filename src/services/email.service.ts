@@ -12,7 +12,7 @@ export const sendCodeToEmail = (email: string, code: string) => {
 
 const generateTemplate  = (username: string, code: string)=>{
     try {
-        return `<div><h1>Bienvenido!! ${username}</h1> <p>tu código de activación es ${code} dirígete a validación de códigos para activar su cuenta o cambiar la contraseña</p></div>`
+        return `<div><h1>Bienvenido!! ${username}</h1> <h2>tu código de activación es ${code} dirígete a validación de códigos para activar su cuenta o cambiar la contraseña</h2></div>`
     } catch (error) {
         return ''
     }
@@ -28,9 +28,9 @@ const getMailOptions = (username: string, code: string)=>{
             email = Mailer.EMAIL_TEST
         }
         const mailOptions={
-            from:"Servidor de NodeJs",
+            from:"lookingFor",
             to:email,
-            subject:"Correo de prueba desde un servidor de node",
+            subject:"código de autentificación de la aplicación",
             html:generateTemplate(username,code)
         }
         return mailOptions

@@ -9,6 +9,7 @@ export const postIncription = async (req: Request, res: Response) => {
     let inscription: inscription = {
       offerID: req.body.offerID,
       userID: jwt.userId,
+      text:req.body.text
     };
     let response = await incriptionService.postinscription(
       inscription,

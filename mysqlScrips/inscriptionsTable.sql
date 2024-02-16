@@ -2,7 +2,7 @@ create table inscription (
 id int primary key auto_increment,
 offerID int,
 userID int,
-
+text varchar(300),
 
 
 active BOOLEAN DEFAULT true,

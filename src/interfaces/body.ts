@@ -3,4 +3,6 @@ export interface filters{
     companyName ?: string
     modality ?: string
     title ?:string
+    page?:number
+    pageSize?:number
 }

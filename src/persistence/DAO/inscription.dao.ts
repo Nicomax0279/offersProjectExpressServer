@@ -23,8 +23,8 @@ export  class InscriptionManager extends SQLManager {
         try {
             
             const userTable = 'user';
-            const rawResponse  = await this.database.from(this.tableName).select(`${userTable}.*`).innerJoin(userTable,`${userTable}.id`,`${this.tableName}.userID`)
-            .where(`${this.tableName}.offerID`,offerID)
+            const rawResponse  = await this.database.from(this.tableName).select(`${userTable}.* `, `${this.tableName}.text`, `${this.tableName}.updated_at as inscriptionDate`).innerJoin(userTable,`${userTable}.id`,`${this.tableName}.userID`)
+            .where(`${this.tableName}.offerID`,offerID).orderBy(`${this.tableName}.updated_at`, "desc")
             let response = rawResponse.map((elm: User)=>({...elm}));
             response = response.map((user) => {
                 const { password , ...responseWithoutPassword } = user;

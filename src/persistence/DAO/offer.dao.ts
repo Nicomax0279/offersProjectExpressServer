@@ -31,9 +31,14 @@ export class OfferManager extends SQLManager {
     }
   }
 
-  async getAllWithFilters(filters: filters , userid:number=0): Promise<offer[]> {
+  async getAllWithFilters(
+    filters: filters,
+    userid: number = 0
+  ): Promise<offer[]> {
+    //console.log(filters)
     try {
-       
+    
+     
       let userID = userid;
       const raw2 = this.database.raw("?", [userID]);
       let query = this.database
@@ -64,19 +69,21 @@ export class OfferManager extends SQLManager {
       if (filters.title) {
         query = query.where("o.title", "LIKE", `%${filters.title}%`);
       }
-     
-
+      query.where("o.active", "1")
+      if(filters.page && filters.pageSize){
+        const startIndex = (filters.page - 1) * filters.pageSize;
+      query.limit(filters.pageSize)
+      query.offset(startIndex);}
       let result = await query;
 
       const parseResult = result.map((elm: any) => ({ ...elm }));
 
       return parseResult;
     } catch (error) {
-   
       throw error;
     }
   }
-
+  
   async getOffersByCompany(companyID: Number): Promise<offer[]> {
     try {
       //,`count(${inscriptionTable}.offerID)`
